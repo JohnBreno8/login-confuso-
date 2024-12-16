@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom right, #6a11cb, #2575fc);
+            color: #fff;
+        }
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .login-container:hover {
+            transform: scale(1.05);
+        }
+        h2 {
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.2s ease-in-out;
+        }
+        input:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        .btn {
+            padding: 10px 20px;
+            background: #2575fc;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .btn:hover {
+            background: #6a11cb;
+        }
+        .message {
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Bem-vindo</h2>
+        <form id="loginForm">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" placeholder="Digite seu nome" required>
+
+            <label for="age">Idade:</label>
+            <input type="number" id="age" name="age" placeholder="Digite sua idade" required>
+
+            <button type="submit" class="btn">Entrar</button>
+        </form>
+        <p class="message" id="message"></p>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById("loginForm");
+        const ageInput = document.getElementById("age");
+        const message = document.getElementById("message");
+
+        const ages = new Set();
+
+        loginForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const age = ageInput.value;
+
+            if (ages.has(age)) {
+                message.textContent = `A idade ${age} já existe!`;
+                message.style.color = "red";
+            } else {
+                ages.add(age);
+                message.textContent = `Idade ${age} registrada com sucesso!`;
+                message.style.color = "green";
+            }
+
+            ageInput.value = "";
+        });
+    </script>
+</body>
+</html>
